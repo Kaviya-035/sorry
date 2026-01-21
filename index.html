@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Suba</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', sans-serif;}
+
+    /* Body with proper background */
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+  animation: bgZoomFade 5s ease-in-out infinite alternate;
+}
+
+
+    /* Overlay with semi-transparent gradient */
+    .overlay{
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: linear-gradient(to bottom right, rgba(20,20,30,0.6), rgba(50,0,50,0.4));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .card{
+      position: relative;
+      z-index: 1; /* Ensure card is above overlay */
+      max-width:420px;
+      width:100%;
+      background: rgba(255,255,255,0.08);
+      border-radius:25px;
+      padding:30px 25px;
+      text-align:center;
+      box-shadow:0 15px 50px rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease;
+    }
+
+    h1{
+      font-size:1.8rem;
+      margin-bottom:15px;
+      color:#fff;
+      text-shadow:0 0 8px rgba(255,255,255,0.7);
+    }
+
+    p{
+      font-size:1rem;
+      line-height:1.6;
+      opacity:0.95;
+      margin-bottom:20px;
+      color:#fdf6f0;
+    }
+
+    button{
+      background: linear-gradient(135deg, #ff6b81, #ff9a8b);
+      color:white;
+      border:none;
+      padding:12px 25px;
+      border-radius:25px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    button:hover{
+      transform:scale(1.05);
+    }
+
+    .fade{animation: fadeInUp 1s ease;}
+    
+    /* Suba name animation */
+    .name{
+      font-size:2.5rem;
+      font-weight:700;
+      color:#ffccd5;
+      text-shadow:0 0 20px rgba(255,204,213,0.9);
+      animation: pulse 2s infinite;
+      margin-bottom:12px;
+    }
+
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.08);}
+      100%{transform:scale(1);}
+    }
+
+    @keyframes fadeIn{from{opacity:0;transform:scale(0.95);} to{opacity:1; transform:scale(1);}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+
+    /* Responsive */
+    @media(max-width:480px){
+      h1{font-size:1.5rem;}
+      .name{font-size:2rem;}
+      p{font-size:0.95rem;}
+      button{padding:10px 20px;font-size:0.95rem;}
+    }
+
+  </style>
+</head>
+
+<body>
+<audio id="bgMusic" autoplay loop>
+  <source src="sorry.mp4" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+  <div class="overlay">
+    <div class="card" id="box">
+      <div class="name">Suba</div>
+      <h1 class="fade">Hey…</h1>
+      <p class="fade">Indha website yaarukum illa.<br/>Unakkum… enakkum mattum.</p>
+      <button onclick="step2()">Enna nu pakalama?</button>
+    </div>
+  </div>
+
+<script>
+    const music = document.getElementById('bgMusic');
+function step2(){
+     music.play().catch(()=>console.log("Music autoplay blocked, click detected to play."));
+  document.getElementById("box").innerHTML = `
+    <div class="name">Suba</div>
+    <h1 class="fade">Konjam kelvi illaama padichu paaru…</h1>
+    <p class="fade">
+      Na perfect illa.<br/>
+      Unakku pidikkatha vishayam panniten nu therinjum…<br/>
+      Sanda poten.</br>
+      ini antha thappu panala nu matum thana solla mudium...unku huert agiruntha ena manuchru suba</br>
+      ini apdi na panna maten
+    </p>
+    <button onclick="step3()">Next</button>
+  `;
+}
+
+function step3(){
+  document.getElementById("box").innerHTML = `
+    <div class="name">Suba</div>
+    <h1 class="fade">Sorry 🥺</h1>
+    <p class="fade">
+      Justification illa.<br/>
+      Explanation illa.<br/>
+      Indha sorry heart-la irunthu.
+    </p>
+    <button onclick="step4()">Last aa</button>
+  `;
+}
+
+function step4(){
+  document.getElementById("box").innerHTML = `
+    <div class="name">Suba</div>
+    <h1 class="fade">Munadi mari pasama pesalama…?</h1>
+    <p class="fade">
+      oru ok nu reply pothum ?<br/>
+    </p>
+    <button onclick="window.location.href='https://wa.me/919345661737'">
+      Yes
+    </button>
+  `;
+}
+  const bgImages = [
+    'she1.jpeg',
+    'she2.jpeg',
+    'she3.jpeg',
+    'she4.jpeg',
+    'she5.jpeg',
+    'she6.jpeg',
+  ];
+
+  let current = 0;
+  const body = document.body;
+
+  body.style.backgroundImage = `url('${bgImages[current]}')`;
+
+  function changeBackground() {
+    current = (current + 1) % bgImages.length;
+    body.style.backgroundImage = `url('${bgImages[current]}')`;
+  }
+
+  // Change every 5 seconds
+  setInterval(changeBackground, 5000);
+
+</script>
+
+</body>
+</html>
